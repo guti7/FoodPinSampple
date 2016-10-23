@@ -11,6 +11,9 @@ import UIKit
 class RestaurantDetailViewController: UIViewController {
     
     // MARK: - Variables
+    var restaurant: Restaurant!
+    
+    
     @IBOutlet var restImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var locationLabel: UILabel!
@@ -18,20 +21,14 @@ class RestaurantDetailViewController: UIViewController {
     
     
     
-    var restImage: String! // = ""
-    var nameRest: String!
-    var locationRest: String!
-    var typeRest: String!
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        restImageView.image = UIImage(named: restImage)
-        
-        nameLabel.text = nameRest
-        locationLabel.text = locationRest
-        typeLabel.text = typeRest
+        nameLabel.text = restaurant.name
+        locationLabel.text = restaurant.location
+        typeLabel.text = restaurant.type
+        restImageView.image = UIImage(named: restaurant.image)
     }
 
     override func didReceiveMemoryWarning() {
