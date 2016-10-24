@@ -23,7 +23,7 @@ class RestaurantTableViewController: UITableViewController {
                        image: "homei.jpg", isVisited: false),
             Restaurant(name: "Teakha", type: "Tea House", location: "Hong Kong",
                        image: "teakha.jpg", isVisited: false),
-            Restaurant(name: "Cafe loisl", type: "Austrian / Causual Drink", location:"Hong             Kong", image: "cafeloisl.jpg", isVisited: false),
+            Restaurant(name: "Cafe loisl", type: "Austrian / Causual Drink", location:"Hong Kong", image: "cafeloisl.jpg", isVisited: false),
             Restaurant(name: "Petite Oyster", type: "French", location: "Hong Kong",
                        image: "petiteoyster.jpg", isVisited: false),
             Restaurant(name: "For Kee Restaurant", type: "Bakery", location: "Hong Kong",
@@ -221,7 +221,7 @@ class RestaurantTableViewController: UITableViewController {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
         
-        if segue.identifier == "showRestDetail" {
+        if segue.identifier == "showDetails" {
             if let indexPath = tableView.indexPathForSelectedRow {
                 let destinationCont = segue.destination as! RestaurantDetailViewController
                 destinationCont.restaurant = restaurants[indexPath.row]

@@ -8,26 +8,16 @@
 
 import UIKit
 
-class RestaurantDetailViewController: UIViewController {
+class RestaurantDetailViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     // MARK: - Variables
     var restaurant: Restaurant!
-    
-    
     @IBOutlet var restImageView: UIImageView!
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var locationLabel: UILabel!
-    @IBOutlet weak var typeLabel: UILabel!
-    
-    
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        nameLabel.text = restaurant.name
-        locationLabel.text = restaurant.location
-        typeLabel.text = restaurant.type
         restImageView.image = UIImage(named: restaurant.image)
     }
 
@@ -36,6 +26,41 @@ class RestaurantDetailViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    
+    // MARK: - Data Source Protocol
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 4
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "detailCell", for: indexPath) as! DetailRestaurantTableViewCell
+        
+        switch indexPath.row {
+        case 0:
+            cell.fieldLabel.text = "Name"
+            cell.valueLabel.text = restaurant.name
+        case 1:
+            cell.fieldLabel.text = "Type"
+            cell.valueLabel.text = restaurant.type
+        case 2:
+            cell.fieldLabel.text = "Location"
+            cell.valueLabel.text = restaurant.location
+        case 3:
+            cell.fieldLabel.text = "Been here"
+            cell.valueLabel.text = restaurant.isVisited ? "Yes, I've been here before" : "No"
+        default:
+            cell.fieldLabel.text = ""
+            cell.valueLabel.text = ""
+        }
+        
+        return cell
+    }
 
     /*
     // MARK: - Navigation
