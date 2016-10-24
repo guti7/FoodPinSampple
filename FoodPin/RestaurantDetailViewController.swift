@@ -29,6 +29,12 @@ class RestaurantDetailViewController: UIViewController, UITableViewDataSource, U
         tableView.tableFooterView = UIView(frame: .zero)
         tableView.separatorColor = UIColor(red: 240.0/255.0, green: 240.0/255.0, blue: 240.0/255.0, alpha: 0.8)
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.hidesBarsOnSwipe = false
+        navigationController!.setNavigationBarHidden(false, animated: true)
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
