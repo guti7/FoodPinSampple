@@ -18,6 +18,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        // Controls the color of navigation items and bat button items
+        UINavigationBar.appearance().tintColor = UIColor.white
+        
+        // Modify the background color of the navigation bar
+        UINavigationBar.appearance().barTintColor = UIColor(red: 242/255, green: 116/255, blue: 119/255, alpha: 1.0)
+        
+        // Title style can be changed by setting the titleTextAttributes
+        // font, color, text shadow color, text shadow offset for the title
+        if let barFont = UIFont(name: "Avenir-Light", size: 24.0) {
+            UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName: barFont]
+        }
+        
+        
+        
         return true
     }
 
