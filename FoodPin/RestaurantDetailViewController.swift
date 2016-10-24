@@ -18,6 +18,9 @@ class RestaurantDetailViewController: UIViewController, UITableViewDataSource, U
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Set title of detail view
+        title = restaurant.name
 
         restImageView.image = UIImage(named: restaurant.image)
         
