@@ -18,43 +18,42 @@ class RestaurantTableViewController: UITableViewController {
     }
     
     var restaurants: [Restaurant] = [
-            Restaurant(name: "Cafe Deadend", type: "Coffee & Tea Shop", location: "Hong Kong", image: "cafedeadend.jpg", isVisited: false),
-            Restaurant(name: "Homei", type: "Cafe", location: "Hong Kong",
+        Restaurant(name: "Cafe Deadend", type: "Coffee & Tea Shop", location: "Hong Kong", phone: "198237542", image: "cafedeadend.jpg", isVisited: false),
+            Restaurant(name: "Homei", type: "Cafe", location: "Hong Kong", phone: "198237542",
                        image: "homei.jpg", isVisited: false),
-            Restaurant(name: "Teakha", type: "Tea House", location: "Hong Kong",
+            Restaurant(name: "Teakha", type: "Tea House", location: "Hong Kong", phone: "198237542",
                        image: "teakha.jpg", isVisited: false),
-            Restaurant(name: "Cafe loisl", type: "Austrian / Causual Drink", location:"Hong Kong", image: "cafeloisl.jpg", isVisited: false),
-            Restaurant(name: "Petite Oyster", type: "French", location: "Hong Kong",
+            Restaurant(name: "Cafe loisl", type: "Austrian / Causual Drink", location:"Hong Kong", phone: "198237542", image: "cafeloisl.jpg", isVisited: false),
+            Restaurant(name: "Petite Oyster", type: "French", location: "Hong Kong", phone: "198237542",
                        image: "petiteoyster.jpg", isVisited: false),
-            Restaurant(name: "For Kee Restaurant", type: "Bakery", location: "Hong Kong",
+            Restaurant(name: "For Kee Restaurant", type: "Bakery", location: "Hong Kong", phone: "198237542",
                        image: "forkeerestaurant.jpg", isVisited: false),
-            Restaurant(name: "Po's Atelier", type: "Bakery", location: "Hong Kong",
+            Restaurant(name: "Po's Atelier", type: "Bakery", location: "Hong Kong", phone: "198237542",
                        image: "posatelier.jpg", isVisited: false),
             Restaurant(name: "Bourke Street Backery", type: "Chocolate", location:
-                    "Sydney", image: "bourkestreetbakery.jpg", isVisited: false),
-            Restaurant(name: "Haigh's Chocolate", type: "Cafe", location: "Sydney",
+                    "Sydney", phone: "198237542", image: "bourkestreetbakery.jpg", isVisited: false),
+            Restaurant(name: "Haigh's Chocolate", type: "Cafe", location: "Sydney", phone: "198237542",
                        image: "haighschocolate.jpg", isVisited: false),
             Restaurant(name: "Palomino Espresso", type: "American / Seafood", location:
-                    "Sydney", image: "palominoespresso.jpg", isVisited: false),
-            Restaurant(name: "Upstate", type: "American", location: "New York", image:
+                    "Sydney", phone: "198237542", image: "palominoespresso.jpg", isVisited: false),
+            Restaurant(name: "Upstate", type: "American", location: "New York", phone: "198237542", image:
                     "upstate.jpg", isVisited: false),
-            Restaurant(name: "Traif", type: "American", location: "New York", image:
+            Restaurant(name: "Traif", type: "American", location: "New York", phone: "198237542", image:
                     "traif.jpg", isVisited: false),
-            Restaurant(name: "Graham Avenue Meats", type: "Breakfast & Brunch", location: "New York", image: "grahamavenuemeats.jpg", isVisited: false),
-            Restaurant(name: "Waffle & Wolf", type: "Coffee & Tea", location: "New York",
+            Restaurant(name: "Graham Avenue Meats", type: "Breakfast & Brunch", location: "New York", phone: "198237542", image: "grahamavenuemeats.jpg", isVisited: false),
+            Restaurant(name: "Waffle & Wolf", type: "Coffee & Tea", location: "New York", phone: "198237542",
                     image: "wafflewolf.jpg", isVisited: false),
-            Restaurant(name: "Five Leaves", type: "Coffee & Tea", location: "New York",
+            Restaurant(name: "Five Leaves", type: "Coffee & Tea", location: "New York", phone: "198237542",
                         image: "fiveleaves.jpg", isVisited: false),
-            Restaurant(name: "Cafe Lore", type: "Latin American", location: "New York",
+            Restaurant(name: "Cafe Lore", type: "Latin American", location: "New York", phone: "198237542",
                                image: "cafelore.jpg", isVisited: false),
-            Restaurant(name: "Confessional", type: "Spanish", location: "New York",
-                               image: "confessional.jpg", isVisited: false),
-            Restaurant(name: "Barrafina", type: "Spanish", location: "London", image:
+            Restaurant(name: "Confessional", type: "Spanish", location: "New York", phone: "198237542", image: "confessional.jpg", isVisited: false),
+            Restaurant(name: "Barrafina", type: "Spanish", location: "London", phone: "198237542", image:
                         "barrafina.jpg", isVisited: false),
-            Restaurant(name: "Donostia", type: "Spanish", location: "London", image:
+            Restaurant(name: "Donostia", type: "Spanish", location: "London", phone: "198237542", image:
                         "donostia.jpg", isVisited: false),
-            Restaurant(name: "Royal Oak", type: "British", location: "London", image:  "royaloak.jpg", isVisited: false),
-            Restaurant(name: "Thai Cafe", type: "Thai", location: "London", image:
+            Restaurant(name: "Royal Oak", type: "British", location: "London", phone: "198237542", image:  "royaloak.jpg", isVisited: false),
+            Restaurant(name: "Thai Cafe", type: "Thai", location: "London", phone: "198237542", image:
                 "thaicafe.jpg", isVisited: false)
         ]
     
