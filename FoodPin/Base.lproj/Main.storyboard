@@ -211,6 +211,7 @@
                     </view>
                     <connections>
                         <outlet property="restImageView" destination="Xus-IJ-bnU" id="8NW-U7-jI8"/>
+                        <outlet property="tableView" destination="4uQ-02-GDz" id="hDz-8F-KHr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="INN-gl-aje" userLabel="First Responder" sceneMemberID="firstResponder"/>

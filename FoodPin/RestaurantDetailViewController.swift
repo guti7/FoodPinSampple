@@ -13,12 +13,18 @@ class RestaurantDetailViewController: UIViewController, UITableViewDataSource, U
     // MARK: - Variables
     var restaurant: Restaurant!
     @IBOutlet var restImageView: UIImageView!
+    @IBOutlet var tableView: UITableView!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         restImageView.image = UIImage(named: restaurant.image)
+        
+        // Set Table View look
+        tableView.backgroundColor = UIColor(red: 240.0/255.0, green: 240.0/255.0, blue: 240.0/255.0, alpha: 0.1)
+        tableView.tableFooterView = UIView(frame: .zero)
+        tableView.separatorColor = UIColor(red: 240.0/255.0, green: 240.0/255.0, blue: 240.0/255.0, alpha: 0.8)
     }
 
     override func didReceiveMemoryWarning() {
@@ -59,6 +65,7 @@ class RestaurantDetailViewController: UIViewController, UITableViewDataSource, U
             cell.valueLabel.text = ""
         }
         
+        cell.backgroundColor = UIColor.clear
         return cell
     }
 
