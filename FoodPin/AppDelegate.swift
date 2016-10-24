@@ -17,7 +17,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        // Status bar appearance - make sure to add new target 
+        // property View controller-based status bar appearance = NO
+        UIApplication.shared.statusBarStyle = .lightContent
         
         // Controls the color of navigation items and bat button items
         UINavigationBar.appearance().tintColor = UIColor.white
