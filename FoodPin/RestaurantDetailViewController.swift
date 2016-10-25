@@ -19,15 +19,18 @@ class RestaurantDetailViewController: UIViewController, UITableViewDataSource, U
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Set title of detail view
+        // Set Table View look and title of detail view
         title = restaurant.name
-
-        restImageView.image = UIImage(named: restaurant.image)
-        
-        // Set Table View look
         tableView.backgroundColor = UIColor(red: 240.0/255.0, green: 240.0/255.0, blue: 240.0/255.0, alpha: 0.1)
         tableView.tableFooterView = UIView(frame: .zero)
         tableView.separatorColor = UIColor(red: 240.0/255.0, green: 240.0/255.0, blue: 240.0/255.0, alpha: 0.8)
+
+        restImageView.image = UIImage(named: restaurant.image)
+        // self sizing cells
+        tableView.estimatedRowHeight = 36.0
+        tableView.rowHeight = UITableViewAutomaticDimension
+        
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -68,7 +71,7 @@ class RestaurantDetailViewController: UIViewController, UITableViewDataSource, U
             cell.valueLabel.text = restaurant.location
         case 3:
             cell.fieldLabel.text = "Phone"
-            cell.valueLabel.text = restaurant.phone
+            cell.valueLabel.text = restaurant.phoneNumber
         case 4:
             cell.fieldLabel.text = "Been here"
             cell.valueLabel.text = restaurant.isVisited ? "Yes, I've been here before" : "No"
