@@ -84,7 +84,6 @@ class RestaurantDetailViewController: UIViewController, UITableViewDataSource, U
         return cell
     }
 
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -92,6 +91,10 @@ class RestaurantDetailViewController: UIViewController, UITableViewDataSource, U
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
     }
-    */
+    
+    
+    @IBAction func close(segue: UIStoryboardSegue) {
+        
+    }
 
 }
