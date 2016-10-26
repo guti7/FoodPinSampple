@@ -48,31 +48,27 @@ class ReviewViewController: UIViewController {
 //        ratingStackView.transform = scaling.concatenating(translation)
         
         // animation: for individual buttons
-        dislikeButton.transform = CGAffineTransform(translationX: 0.0, y: 500.0)
-        goodButton.transform  = CGAffineTransform(translationX: 0.0, y: 500.0)
-        greatButton.transform = CGAffineTransform(translationX: 0.0, y: 500.0)
+        let translate = CGAffineTransform(translationX: 0.0, y: 500.0)
+        dislikeButton.transform = translate
+        goodButton.transform  = translate
+        greatButton.transform = translate
         
     }
     
     override func viewDidAppear(_ animated: Bool) {
         // we want animation after view is loaded
         
-        UIView.animate(withDuration: 0.6, delay: 0.0, options: [], animations: {
+        UIView.animate(withDuration: 0.5, delay: 0.0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5, options: [], animations: {
             self.dislikeButton.transform = CGAffineTransform.identity
             }, completion: nil)
         
-        UIView.animate(withDuration: 0.6, delay: 0.3, options: [], animations: {
+        UIView.animate(withDuration: 0.5, delay: 0.2, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5, options: [], animations: {
             self.goodButton.transform = CGAffineTransform.identity
-            }, completion: nil )
-        
-        UIView.animate(withDuration: 0.6, delay: 0.6, options: [], animations: {
-            
-            self.greatButton.transform = CGAffineTransform.identity
             }, completion: nil)
         
-//        UIView.animate(withDuration: 1.5, delay: 0.0, usingSpringWithDamping: 0.3, initialSpringVelocity: 0.5, options: [], animations: {
-//            self.ratingStackView.transform = CGAffineTransform.identity
-//            }, completion: nil)
+        UIView.animate(withDuration: 0.5, delay: 0.4, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5, options: [], animations: {
+            self.greatButton.transform = CGAffineTransform.identity
+            }, completion: nil)
     }
 
     override func didReceiveMemoryWarning() {
