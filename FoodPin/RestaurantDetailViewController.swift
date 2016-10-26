@@ -14,9 +14,11 @@ class RestaurantDetailViewController: UIViewController, UITableViewDataSource, U
     var restaurant: Restaurant!
     @IBOutlet var restImageView: UIImageView!
     @IBOutlet var tableView: UITableView!
+    @IBOutlet weak var ratingButton: UIButton!
     
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         
         // Set Table View look and title of detail view
@@ -26,9 +28,14 @@ class RestaurantDetailViewController: UIViewController, UITableViewDataSource, U
         tableView.separatorColor = UIColor(red: 240.0/255.0, green: 240.0/255.0, blue: 240.0/255.0, alpha: 0.8)
 
         restImageView.image = UIImage(named: restaurant.image)
+        
         // self sizing cells
         tableView.estimatedRowHeight = 36.0
         tableView.rowHeight = UITableViewAutomaticDimension
+        
+        if restaurant.rating != "" {
+            ratingButton.setImage(UIImage(named: restaurant.rating), for: .normal)
+        }
         
 
     }
@@ -93,7 +100,16 @@ class RestaurantDetailViewController: UIViewController, UITableViewDataSource, U
     }
     
     
+    // Unwind segue
+    // Used to close the review controller
     @IBAction func close(segue: UIStoryboardSegue) {
+        
+        if let reviewController = segue.source as?  ReviewViewController {
+            if let rating = reviewController.rating {
+                ratingButton.setImage(UIImage(named: rating), for: .normal)
+                restaurant.rating = rating
+            }
+        }
         
     }
 

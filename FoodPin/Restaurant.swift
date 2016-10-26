@@ -16,10 +16,11 @@ class Restaurant {
     var location: String!
     var phoneNumber: String!
     var image: String!
-    var isVisited: Bool = false
+    var isVisited: Bool
+    var rating: String
     
     // initializer
-    init(name: String, type: String, location: String, phoneNumber: String, image: String, isVisited: Bool) {
+    init(name: String, type: String, location: String, phoneNumber: String, image: String, isVisited: Bool = false, rating: String = "") {
         
         self.name = name
         self.type = type
@@ -27,5 +28,6 @@ class Restaurant {
         self.phoneNumber = phoneNumber
         self.image = image
         self.isVisited = isVisited
+        self.rating = rating
     }
 }
