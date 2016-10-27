@@ -51,9 +51,29 @@ class AddRestaurantController: UITableViewController, UIImagePickerControllerDel
     // Get the selected photo once the user chooses a photo
     // Assigns the image view with the selecte image.
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        
         imageView.image = info[UIImagePickerControllerOriginalImage] as? UIImage
         imageView.contentMode = UIViewContentMode.scaleAspectFill
         imageView.clipsToBounds = true
+        
+        // add layout contraints for the imageView
+        // left
+        let leadingConstraint = NSLayoutConstraint(item: imageView, attribute: .leading, relatedBy: .equal, toItem: imageView.superview, attribute: .leading, multiplier: 1, constant: 0)
+        leadingConstraint.isActive = true
+        
+        // right
+        let trailingConstraint = NSLayoutConstraint(item: imageView, attribute: .trailing, relatedBy: .equal, toItem: imageView.superview, attribute: .trailing, multiplier: 1, constant: 0)
+        trailingConstraint.isActive = true
+        
+        // top
+        let topConstraint = NSLayoutConstraint(item: imageView, attribute: .top, relatedBy: .equal, toItem: imageView.superview, attribute: .top, multiplier: 1, constant: 0)
+        topConstraint.isActive = true
+        
+        // bottom
+        let bottomConstraint = NSLayoutConstraint(item: imageView, attribute: .bottom, relatedBy: .equal, toItem: imageView.superview, attribute: .bottom, multiplier: 1, constant: 0)
+        bottomConstraint.isActive = true
+        
+        
         
         dismiss(animated: true, completion: nil)
     }
