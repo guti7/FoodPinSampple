@@ -220,4 +220,12 @@ class RestaurantTableViewController: UITableViewController {
             }
         }
     }
+    
+    /*
+    * Unwind from adding a new restaurant
+    */
+    @IBAction func unwindToHomeScreen(segue: UIStoryboardSegue) {
+        
+    }
+    
 } // end of class

@@ -20,14 +20,13 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        mapView.delegate = self
-
+        
         // Convert address to coordinate and annotate it on map
         // forward-geocoding
         let geoCoder = CLGeocoder()
         geoCoder.geocodeAddressString(restaurant.location, completionHandler: { placemarks, error in
             if error != nil {
-                print(error)
+                print(error!)
                 return
             }
             
@@ -49,6 +48,13 @@ class MapViewController: UIViewController, MKMapViewDelegate {
                 }
             }
         })
+        
+        mapView.delegate = self
+        
+        // customize map view
+        mapView.showsCompass = true
+        mapView.showsScale = true
+        mapView.showsTraffic = true
     }
     
     // MARK: - Map View Delegate
