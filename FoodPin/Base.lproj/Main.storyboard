@@ -235,7 +235,7 @@
         <!--New Restaurant-->
         <scene sceneID="AZH-nh-Zli">
             <objects>
-                <tableViewController id="meM-kv-Kyr" sceneMemberID="viewController">
+                <tableViewController id="meM-kv-Kyr" customClass="AddRestaurantController" customModule="FoodPin" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="whe-ez-gdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -251,10 +251,10 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photoalbum" translatesAutoresizingMaskIntoConstraints="NO" id="Zkz-ij-hEE">
-                                                    <rect key="frame" x="147.5" y="85" width="80" height="80"/>
+                                                    <rect key="frame" x="137.5" y="75" width="100" height="100"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="80" id="UEO-WX-PdJ"/>
-                                                        <constraint firstAttribute="height" constant="80" id="yBf-AW-1g8"/>
+                                                        <constraint firstAttribute="height" constant="100" id="8wn-Sa-dji"/>
+                                                        <constraint firstAttribute="width" constant="100" id="T9J-PI-c5k"/>
                                                     </constraints>
                                                 </imageView>
                                             </subviews>
@@ -412,6 +412,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="imageView" destination="Zkz-ij-hEE" id="AFl-vr-a9T"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XjF-Ac-SvB" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="qln-t1-Ni0" userLabel="Exit" sceneMemberID="exit"/>
