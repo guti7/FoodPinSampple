@@ -9,7 +9,7 @@
 import UIKit
 import MapKit
 
-class MapViewController: UIViewController {
+class MapViewController: UIViewController, MKMapViewDelegate {
 
     var restaurant: Restaurant!
     
@@ -19,6 +19,8 @@ class MapViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        mapView.delegate = self
 
         // Convert address to coordinate and annotate it on map
         // forward-geocoding
@@ -48,6 +50,35 @@ class MapViewController: UIViewController {
             }
         })
     }
+    
+    // MARK: - Map View Delegate
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        let identifier = "MyPin"
+        
+        // annotation.isKind(of: MKUserLocation)
+        if annotation is MKUserLocation { return nil }
+        
+        // reuse the annotation if possible
+        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) as?  MKPinAnnotationView
+        
+        if annotationView == nil {
+            annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+            annotationView?.canShowCallout = true
+        }
+        
+        let leftIconView = UIImageView(frame: CGRect(x: 0, y: 0, width: 53, height: 53))
+        leftIconView.image = UIImage(named: restaurant.image)
+        annotationView?.leftCalloutAccessoryView = leftIconView
+        
+        
+        // customize pin color
+        annotationView?.pinTintColor = UIColor.orange
+        
+        return annotationView
+        
+    }
+    
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
