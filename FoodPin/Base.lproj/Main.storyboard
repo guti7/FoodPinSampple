@@ -357,23 +357,29 @@
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sSh-iV-POK">
                                                     <rect key="frame" x="70" y="33" width="60" height="30"/>
-                                                    <color key="backgroundColor" red="0.3019060864" green="0.3019060864" blue="0.3019060864" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="60" id="5Lb-Gl-4xy"/>
                                                     </constraints>
                                                     <state key="normal" title="NO">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="hasBeenHere:" destination="meM-kv-Kyr" eventType="touchUpInside" id="2BM-hF-m4o"/>
+                                                    </connections>
                                                 </button>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i9X-bB-wX3">
+                                                <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i9X-bB-wX3">
                                                     <rect key="frame" x="8" y="33" width="60" height="30"/>
-                                                    <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="60" id="W2w-e6-Kja"/>
                                                     </constraints>
                                                     <state key="normal" title="YES">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="hasBeenHere:" destination="meM-kv-Kyr" eventType="touchUpInside" id="t19-jX-oxp"/>
+                                                    </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Have You Been Here" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Zg-98-yyq">
                                                     <rect key="frame" x="8" y="8" width="157" height="21"/>
@@ -404,12 +410,24 @@
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="jVx-JL-gJm">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
-                                <segue destination="qln-t1-Ni0" kind="unwind" unwindAction="unwindToHomeScreenWithSegue:" id="oVn-9a-3RG"/>
+                                <segue destination="qln-t1-Ni0" kind="unwind" identifier="unwindHome" unwindAction="unwindToHomeScreenWithSegue:" id="yzk-oL-mLo"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" tag="1" systemItem="save" id="qyc-GZ-nHU">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="saveButtonPressed:" destination="meM-kv-Kyr" id="sMW-Vs-7kc"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="imageView" destination="Zkz-ij-hEE" id="AFl-vr-a9T"/>
+                        <outlet property="locationField" destination="qFV-Qw-8X9" id="25l-pm-3vA"/>
+                        <outlet property="nameField" destination="c6A-C8-WMN" id="hb6-p9-GzT"/>
+                        <outlet property="noButton" destination="sSh-iV-POK" id="YNC-Sr-w8c"/>
+                        <outlet property="saveButton" destination="qyc-GZ-nHU" id="ocP-67-iiQ"/>
+                        <outlet property="typeField" destination="IxX-1f-N50" id="1PD-qE-ayW"/>
+                        <outlet property="yesButton" destination="i9X-bB-wX3" id="10c-nA-Rxl"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XjF-Ac-SvB" userLabel="First Responder" sceneMemberID="firstResponder"/>

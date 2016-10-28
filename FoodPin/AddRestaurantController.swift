@@ -11,8 +11,19 @@ import UIKit
 class AddRestaurantController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     // MARK: - Outlets
+    @IBOutlet weak var saveButton: UIBarButtonItem!
+    
     @IBOutlet var imageView: UIImageView!
+    @IBOutlet weak var nameField: UITextField!
+    @IBOutlet weak var typeField: UITextField!
+    @IBOutlet weak var locationField: UITextField!
 
+    @IBOutlet weak var yesButton: UIButton!
+    @IBOutlet weak var noButton: UIButton!
+    
+    var isVisited: Bool = false
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -27,6 +38,9 @@ class AddRestaurantController: UITableViewController, UIImagePickerControllerDel
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    
+    
     
     // When row 1 is selected the photo library is shown.
     override func tableView(_ tableView: UITableView, didSelectRowAt index: IndexPath) {
@@ -45,6 +59,46 @@ class AddRestaurantController: UITableViewController, UIImagePickerControllerDel
         }
         tableView.deselectRow(at: index, animated: true)
     }
+    
+    
+    
+    
+    @IBAction func saveButtonPressed(_ sender: UIBarButtonItem) {
+        if sender.tag == 1 {
+            // get values of text fields and validate text fields, if empty throw alert
+            if ((nameField.text?.isEmpty)! || (typeField.text?.isEmpty)! || (locationField.text?.isEmpty)!) {
+                print("UIAlertController added here")
+                
+                let alertMessage = UIAlertController(title: "Oops", message: "Can't proceed with blank fields.\nPlease fill all fields in.", preferredStyle: UIAlertControllerStyle.alert)
+                alertMessage.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                present(alertMessage, animated: true, completion: nil)
+                
+            } else {  // else output to console
+                print("------")
+                print("All values:\nName - \(nameField.text!)\nType - \(typeField.text!)\nLocation - \(locationField.text!)\nHas Been Here - \(isVisited)")
+                // TODO: Add restaurant to table view??
+                performSegue(withIdentifier: "unwindHome", sender: self)
+                // use dismissViewControllerAnimated(true, completion: nil)
+            }
+            
+        }
+    }
+    
+    
+    
+    @IBAction func hasBeenHere(_ sender: UIButton) {
+        if sender == yesButton { // sender == yesButton ?
+            yesButton.backgroundColor = .red
+            noButton.backgroundColor = .darkGray
+            isVisited = true
+        } else if sender == noButton { // noButon was tapped
+            yesButton.backgroundColor = .darkGray
+            noButton.backgroundColor = .red
+            isVisited = false
+        }
+    }
+    
+    
 
     // MARK: - UIImagePickerControllerDelegate
     
