@@ -10,6 +10,7 @@
 		CC1216551DBD6763000E0AB9 /* RestaurantDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC1216541DBD6763000E0AB9 /* RestaurantDetailViewController.swift */; };
 		CC1216571DBD76CB000E0AB9 /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC1216561DBD76CB000E0AB9 /* Restaurant.swift */; };
 		CC1216591DBDBD13000E0AB9 /* DetailRestaurantTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC1216581DBDBD13000E0AB9 /* DetailRestaurantTableViewCell.swift */; };
+		CC63994D1E313FEC00DC56CD /* FoodPin.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CC63994B1E313FEC00DC56CD /* FoodPin.xcdatamodeld */; };
 		CC9580181DBF3FCE005BA651 /* RestaurantTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC9580171DBF3FCE005BA651 /* RestaurantTableViewCell.swift */; };
 		CC95801A1DBF4286005BA651 /* ReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC9580191DBF4286005BA651 /* ReviewViewController.swift */; };
 		CCAC3BD01DC072CF00B70586 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCAC3BCF1DC072CF00B70586 /* MapKit.framework */; };
@@ -26,6 +27,7 @@
 		CC1216541DBD6763000E0AB9 /* RestaurantDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantDetailViewController.swift; sourceTree = "<group>"; };
 		CC1216561DBD76CB000E0AB9 /* Restaurant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Restaurant.swift; sourceTree = "<group>"; };
 		CC1216581DBDBD13000E0AB9 /* DetailRestaurantTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailRestaurantTableViewCell.swift; sourceTree = "<group>"; };
+		CC63994C1E313FEC00DC56CD /* FoodPin.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FoodPin.xcdatamodel; sourceTree = "<group>"; };
 		CC9580171DBF3FCE005BA651 /* RestaurantTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantTableViewCell.swift; sourceTree = "<group>"; };
 		CC9580191DBF4286005BA651 /* ReviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewViewController.swift; sourceTree = "<group>"; };
 		CCAC3BCF1DC072CF00B70586 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
@@ -93,6 +95,7 @@
 				CCF8333A1DBBF2D4008B5558 /* Assets.xcassets */,
 				CCF8332F1DBBE988008B5558 /* LaunchScreen.storyboard */,
 				CCF833321DBBE988008B5558 /* Info.plist */,
+				CC63994B1E313FEC00DC56CD /* FoodPin.xcdatamodeld */,
 			);
 			path = FoodPin;
 			sourceTree = "<group>";
@@ -180,6 +183,7 @@
 				CCF833391DBBEF6C008B5558 /* RestaurantTableViewController.swift in Sources */,
 				CC95801A1DBF4286005BA651 /* ReviewViewController.swift in Sources */,
 				CC1216591DBDBD13000E0AB9 /* DetailRestaurantTableViewCell.swift in Sources */,
+				CC63994D1E313FEC00DC56CD /* FoodPin.xcdatamodeld in Sources */,
 				CC1216551DBD6763000E0AB9 /* RestaurantDetailViewController.swift in Sources */,
 				CC9580181DBF3FCE005BA651 /* RestaurantTableViewCell.swift in Sources */,
 				CCF833271DBBE988008B5558 /* AppDelegate.swift in Sources */,
@@ -352,6 +356,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		CC63994B1E313FEC00DC56CD /* FoodPin.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				CC63994C1E313FEC00DC56CD /* FoodPin.xcdatamodel */,
+			);
+			currentVersion = CC63994C1E313FEC00DC56CD /* FoodPin.xcdatamodel */;
+			path = FoodPin.xcdatamodeld;
+			sourceTree = SOURCE_ROOT;
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = CCF8331B1DBBE988008B5558 /* Project object */;
 }

@@ -10,6 +10,7 @@ import UIKit
 
 class RestaurantTableViewCell: UITableViewCell {
     
+    // MARK: - Outlets
     @IBOutlet var nameLabel: UILabel!
     @IBOutlet var locationLabel: UILabel!
     @IBOutlet var typeLabel: UILabel!
@@ -25,5 +26,4 @@ class RestaurantTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-
 }

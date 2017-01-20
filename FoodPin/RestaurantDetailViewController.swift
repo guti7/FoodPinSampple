@@ -12,51 +12,45 @@ class RestaurantDetailViewController: UIViewController, UITableViewDataSource, U
     
     // MARK: - Variables
     var restaurant: Restaurant!
+    
+    // MARK:  - Outlets
     @IBOutlet var restImageView: UIImageView!
     @IBOutlet var tableView: UITableView!
     @IBOutlet weak var ratingButton: UIButton!
     
     
+    // MARK: - View Controller Lifecycle
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
         
-        // Set Table View look and title of detail view
+        // Set look and title of detail view
         title = restaurant.name
         tableView.backgroundColor = UIColor(red: 240.0/255.0, green: 240.0/255.0, blue: 240.0/255.0, alpha: 0.1)
         tableView.tableFooterView = UIView(frame: .zero)
         tableView.separatorColor = UIColor(red: 240.0/255.0, green: 240.0/255.0, blue: 240.0/255.0, alpha: 0.8)
 
-        restImageView.image = UIImage(named: restaurant.image)
+        restImageView.image = UIImage(data: restaurant.image!)
         
         // self sizing cells
         tableView.estimatedRowHeight = 36.0
         tableView.rowHeight = UITableViewAutomaticDimension
         
-        if restaurant.rating != "" {
-            ratingButton.setImage(UIImage(named: restaurant.rating), for: .normal)
+        if let rating = restaurant.rating, rating != "" {
+            ratingButton.setImage(UIImage(named: restaurant.rating!), for: .normal)
         }
-        
-
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        // make sure the navigation bar is always shown for this view
         navigationController?.hidesBarsOnSwipe = false
         navigationController!.setNavigationBarHidden(false, animated: true)
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     
     // MARK: - Data Source Protocol
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 5
@@ -81,7 +75,9 @@ class RestaurantDetailViewController: UIViewController, UITableViewDataSource, U
             cell.valueLabel.text = restaurant.phoneNumber
         case 4:
             cell.fieldLabel.text = "Been here"
-            cell.valueLabel.text = restaurant.isVisited ? "Yes, I've been here before" : "No"
+            if let isVisited = restaurant.isVisited?.boolValue {
+                cell.valueLabel.text = isVisited ? "Yes, I've been here before" : "No"
+            }
         default:
             cell.fieldLabel.text = ""
             cell.valueLabel.text = ""
@@ -93,6 +89,7 @@ class RestaurantDetailViewController: UIViewController, UITableViewDataSource, U
 
     // MARK: - Navigation
 
+    // Navigate to show map view
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showMap" {
             let destination = segue.destination as! MapViewController
@@ -101,17 +98,28 @@ class RestaurantDetailViewController: UIViewController, UITableViewDataSource, U
     }
     
     
-    // Unwind segue
-    // Used to close the review controller
+    // Unwind segue to close the review controller
     @IBAction func close(segue: UIStoryboardSegue) {
         
-        if let reviewController = segue.source as?  ReviewViewController {
-            if let rating = reviewController.rating {
-                ratingButton.setImage(UIImage(named: rating), for: .normal)
+        // Closing from ReviewViewController
+        if let reviewViewController = segue.source as? ReviewViewController {
+            if let rating = reviewViewController.rating {
                 restaurant.rating = rating
+                ratingButton.setImage(UIImage(named: rating), for: UIControlState())
+                
+                if let managedObjectContext = (UIApplication.shared.delegate as? AppDelegate)?.managedObjectContext {
+                    do {
+                        try managedObjectContext.save()
+                    } catch {
+                        print(error)
+                    }
+                }
             }
         }
-        
     }
 
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
 }

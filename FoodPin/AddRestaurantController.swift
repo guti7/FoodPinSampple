@@ -7,42 +7,36 @@
 //
 
 import UIKit
+import CoreData
 
+// Add a new restaurant to data model
 class AddRestaurantController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     // MARK: - Outlets
     @IBOutlet weak var saveButton: UIBarButtonItem!
     
     @IBOutlet var imageView: UIImageView!
+    
     @IBOutlet weak var nameField: UITextField!
     @IBOutlet weak var typeField: UITextField!
     @IBOutlet weak var locationField: UITextField!
+    @IBOutlet weak var phoneField: UITextField!
 
     @IBOutlet weak var yesButton: UIButton!
     @IBOutlet weak var noButton: UIButton!
     
+    // MARK: - Variables
+    var restaurant: Restaurant!
     var isVisited: Bool = false
     
     
+    // MARK: - View Controller Lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
-    
-    
-    
-    // When row 1 is selected the photo library is shown.
+    // When the first row is selected the photo library is shown.
     override func tableView(_ tableView: UITableView, didSelectRowAt index: IndexPath) {
         if index.row == 0 {
             
@@ -54,38 +48,61 @@ class AddRestaurantController: UITableViewController, UIImagePickerControllerDel
                 imagePicker.sourceType = .photoLibrary // default value
                 
                 self.present(imagePicker, animated: true, completion: nil)
-                
             }
         }
         tableView.deselectRow(at: index, animated: true)
     }
     
     
+    // MARK: - Actions
     
-    
+    // Save the restaurant
     @IBAction func saveButtonPressed(_ sender: UIBarButtonItem) {
-        if sender.tag == 1 {
-            // get values of text fields and validate text fields, if empty throw alert
-            if ((nameField.text?.isEmpty)! || (typeField.text?.isEmpty)! || (locationField.text?.isEmpty)!) {
-                print("UIAlertController added here")
-                
-                let alertMessage = UIAlertController(title: "Oops", message: "Can't proceed with blank fields.\nPlease fill all fields in.", preferredStyle: UIAlertControllerStyle.alert)
-                alertMessage.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                present(alertMessage, animated: true, completion: nil)
-                
-            } else {  // else output to console
-                print("------")
-                print("All values:\nName - \(nameField.text!)\nType - \(typeField.text!)\nLocation - \(locationField.text!)\nHas Been Here - \(isVisited)")
-                // TODO: Add restaurant to table view??
-                performSegue(withIdentifier: "unwindHome", sender: self)
-                // use dismissViewControllerAnimated(true, completion: nil)
-            }
+        let name = nameField.text
+        let type = typeField.text
+        let location = locationField.text
+        let phoneNumber = phoneField.text
+        
+        // Validate input fields
+        if name == "" || type == "" || location == "" || phoneNumber == "" {
+            let alertController = UIAlertController(title: "Oops", message: "One or more of the fields are blank. Please note all fields are required.", preferredStyle: UIAlertControllerStyle.alert)
             
+            alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil)) // nothing to do just dimsiss alert when OK is pressed
+            
+            self.present(alertController, animated: true, completion: nil)
+            
+            return
+            
+        } else { // user input data is valid so attempt to save to persistent store
+            
+            if let managedObjectContext = (UIApplication.shared.delegate as? AppDelegate)?.managedObjectContext {
+                
+                restaurant = NSEntityDescription.insertNewObject(forEntityName: "Restaurant", into: managedObjectContext) as! Restaurant
+                restaurant.name = name!
+                restaurant.type = type!
+                restaurant.location = location!
+                restaurant.phoneNumber = phoneNumber!
+                
+                
+                if let restaurantImage = self.imageView.image {
+                    restaurant.image = UIImagePNGRepresentation(restaurantImage)
+                }
+                
+                restaurant.isVisited = self.isVisited as NSNumber?                
+                do {
+                    try managedObjectContext.save()
+                } catch {
+                    print("Error: \(error)")
+                    return
+                }
+            }
         }
+        
+        // Dismiss the current view controller
+        dismiss(animated: true, completion: nil)
     }
     
-    
-    
+    // Toggle yes no if you have visited this restaurant
     @IBAction func hasBeenHere(_ sender: UIButton) {
         if sender == yesButton { // sender == yesButton ?
             yesButton.backgroundColor = .red
@@ -99,7 +116,6 @@ class AddRestaurantController: UITableViewController, UIImagePickerControllerDel
     }
     
     
-
     // MARK: - UIImagePickerControllerDelegate
     
     // Get the selected photo once the user chooses a photo
@@ -110,8 +126,7 @@ class AddRestaurantController: UITableViewController, UIImagePickerControllerDel
         imageView.contentMode = UIViewContentMode.scaleAspectFill
         imageView.clipsToBounds = true
         
-        // add layout contraints for the imageView
-        // left
+        // add layout contraints for the imageView, left
         let leadingConstraint = NSLayoutConstraint(item: imageView, attribute: .leading, relatedBy: .equal, toItem: imageView.superview, attribute: .leading, multiplier: 1, constant: 0)
         leadingConstraint.isActive = true
         
@@ -127,77 +142,6 @@ class AddRestaurantController: UITableViewController, UIImagePickerControllerDel
         let bottomConstraint = NSLayoutConstraint(item: imageView, attribute: .bottom, relatedBy: .equal, toItem: imageView.superview, attribute: .bottom, multiplier: 1, constant: 0)
         bottomConstraint.isActive = true
         
-        
-        
         dismiss(animated: true, completion: nil)
     }
-    
-    
-    // MARK: - Table view data source
-
-//    override func numberOfSections(in tableView: UITableView) -> Int {
-//        // #warning Incomplete implementation, return the number of sections
-//        return 0
-//    }
-//
-//    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        // #warning Incomplete implementation, return the number of rows
-//        return 0
-//    }
-
-    /*
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
-        return cell
-    }
-    */
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

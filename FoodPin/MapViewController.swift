@@ -11,30 +11,37 @@ import MapKit
 
 class MapViewController: UIViewController, MKMapViewDelegate {
 
+    // MARK: - Variables
     var restaurant: Restaurant!
     
+    
+    // MARK: - Outlets
     // establish connection with the map view in the storyboard
     @IBOutlet var mapView: MKMapView!
     
     
+    // MARK: - View Controller Lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         
         // Convert address to coordinate and annotate it on map
         // forward-geocoding
         let geoCoder = CLGeocoder()
-        geoCoder.geocodeAddressString(restaurant.location, completionHandler: { placemarks, error in
+        geoCoder.geocodeAddressString(restaurant.location) { placemarks, error in
+           
+            // error handling
             if error != nil {
                 print(error!)
                 return
             }
             
+            // placemark holds all the data location specifics
             if let placemarks = placemarks {
                 // get the first 
                 let placemark = placemarks[0]
                 
-                // add anotation
+                // create and add an anotataion to the map view from the placemark data
                 let annotation = MKPointAnnotation()
                 annotation.title = self.restaurant.name
                 annotation.subtitle = self.restaurant.type
@@ -47,7 +54,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
                     self.mapView.selectAnnotation(annotation, animated: true)
                 }
             }
-        })
+        }
         
         mapView.delegate = self
         
@@ -57,7 +64,9 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         mapView.showsTraffic = true
     }
     
+    
     // MARK: - Map View Delegate
+    
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         let identifier = "MyPin"
         
@@ -73,33 +82,16 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         }
         
         let leftIconView = UIImageView(frame: CGRect(x: 0, y: 0, width: 53, height: 53))
-        leftIconView.image = UIImage(named: restaurant.image)
+        leftIconView.image = UIImage(data: restaurant.image!)
         annotationView?.leftCalloutAccessoryView = leftIconView
-        
         
         // customize pin color
         annotationView?.pinTintColor = UIColor.orange
         
         return annotationView
-        
     }
     
-    
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

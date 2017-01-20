@@ -39,7 +39,7 @@
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>To add a picture to a new restaurant you need to provide access to the photo library</string>
+	<string>To add a picture to a new restaurant you need to provide access to your photo library</string>
 	<key>NSCameraUsageDescription</key>
 	<string>To take a picture you need to provie access to the camera</string>
 </dict>

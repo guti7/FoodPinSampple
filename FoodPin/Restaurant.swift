@@ -7,27 +7,18 @@
 //
 
 import Foundation
+import CoreData
 
-class Restaurant {
+// Managed object for Restaurant
+class Restaurant: NSManagedObject {
     
-    // Mark: - Instance Variables
-    var name: String!
-    var type: String!
-    var location: String!
-    var phoneNumber: String!
-    var image: String!
-    var isVisited: Bool
-    var rating: String
-    
-    // initializer
-    init(name: String, type: String, location: String, phoneNumber: String, image: String, isVisited: Bool = false, rating: String = "") {
-        
-        self.name = name
-        self.type = type
-        self.location = location
-        self.phoneNumber = phoneNumber
-        self.image = image
-        self.isVisited = isVisited
-        self.rating = rating
-    }
+    // Property corresponding to attributes in managed object model
+    @NSManaged var name: String
+    @NSManaged var type: String
+    @NSManaged var location: String
+    @NSManaged var phoneNumber: String?
+    @NSManaged var image: Data? // NSData?
+    @NSManaged var isVisited: NSNumber?
+    @NSManaged var rating: String?
+
 }
