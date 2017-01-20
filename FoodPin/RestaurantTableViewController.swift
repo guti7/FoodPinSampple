@@ -16,12 +16,30 @@ class RestaurantTableViewController: UITableViewController {
     // MARK: - Variables
     
     var restaurants: [Restaurant] = []
+    var searchController: UISearchController! // used to add a search bar
+    var searchResults: [Restaurant] = [] // store search results
   
     // Instance variable for the fetched results controller
     var fetchController: NSFetchedResultsController<NSManagedObject>!
     
     override var prefersStatusBarHidden: Bool {
         return false
+    }
+    
+    // MARK: - Search
+    
+    // Content filtering
+    func filterContentForSearch(_ text: String) {
+        // return true for values to be included
+        searchResults = restaurants.filter() {
+            (restaurant) -> Bool in
+            
+            let nameMatch = restaurant.name.range(of: text, options: .caseInsensitive)
+            let locationMatch = restaurant.location.range(of: text, options: .caseInsensitive)
+            
+            return nameMatch != nil || locationMatch != nil
+            
+        }
     }
     
     
@@ -36,6 +54,22 @@ class RestaurantTableViewController: UITableViewController {
         // self sizing cells
         tableView.estimatedRowHeight = 80.0
         tableView.rowHeight = UITableViewAutomaticDimension
+        
+        // create and show search bar
+        // TODO: - Keep list shown until typing is started in search bar
+        
+        searchController = UISearchController(searchResultsController: nil)
+        searchController.searchResultsUpdater = self
+        tableView.tableHeaderView = searchController.searchBar
+        searchController.dimsBackgroundDuringPresentation = false
+        
+        // customize search bar
+        searchController.searchBar.placeholder = "Search restaurants..."
+        searchController.searchBar.tintColor = UIColor.orange
+//        searchController.searchBar.barTintColor = UIColor(red: 30.0/255.0, green: 30.0/255.0, blue: 30.0/255.0, alpha: 1.0)
+        searchController.searchBar.searchBarStyle = UISearchBarStyle.minimal
+        
+        
         
         // Fetch Core Data storage
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Restaurant")
@@ -63,7 +97,7 @@ class RestaurantTableViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        // Hide the navigatin bar when swiping on the table view
+        // Hide the navigation bar when swiping on the table view
         navigationController?.hidesBarsOnSwipe = true
     }
     
@@ -72,7 +106,7 @@ class RestaurantTableViewController: UITableViewController {
    
     // Number of cell rows
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return restaurants.count
+        return searchController.isActive ? searchResults.count : restaurants.count
     }
     
     // Displays edit options for each row
@@ -116,14 +150,20 @@ class RestaurantTableViewController: UITableViewController {
         // return the array of actions
         return [deleteAction, shareAction]
     }
+    
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+         return !searchController.isActive
+    }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cellIdentifier = "Cell"
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! RestaurantTableViewCell
 
+        
+        let restaurant = (searchController.isActive)  ? searchResults[indexPath.row] : restaurants[indexPath.row]
+        
         // Configure the cell...
-        let restaurant = restaurants[indexPath.row]
         cell.nameLabel.text = restaurant.name
         cell.locationLabel.text = restaurant.location
         cell.typeLabel.text = restaurant.type
@@ -137,7 +177,7 @@ class RestaurantTableViewController: UITableViewController {
         
         // Round Images
         // Can do it with Inteface builder too, with a runtime attribute for the imageview
-        // also the clip to bounds property in the attributes drawing section
+        // as well as the clip to bounds property in the attributes drawing section
         cell.thumbnailImageView.layer.cornerRadius = 30.0
         cell.thumbnailImageView.clipsToBounds  = true
         
@@ -152,7 +192,7 @@ class RestaurantTableViewController: UITableViewController {
         if segue.identifier == "showDetails" {
             if let indexPath = tableView.indexPathForSelectedRow {
                 let destinationCont = segue.destination as! RestaurantDetailViewController
-                destinationCont.restaurant = restaurants[indexPath.row]
+                destinationCont.restaurant = (searchController.isActive) ? searchResults[indexPath.row] :restaurants[indexPath.row]
             }
         }
     }
@@ -204,6 +244,18 @@ extension RestaurantTableViewController: NSFetchedResultsControllerDelegate {
     // Tells the table view that the update is completed and animates the change
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         tableView.endUpdates()
+    }
+} // end of NSFetchedResults
+
+
+// Update and display the search results
+extension RestaurantTableViewController: UISearchResultsUpdating {
+    
+    func updateSearchResults(for searchController: UISearchController) {
+        if let searchText = searchController.searchBar.text {
+            filterContentForSearch(searchText)
+            tableView.reloadData()
+        }
     }
 }
 
