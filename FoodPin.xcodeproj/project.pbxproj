@@ -13,6 +13,8 @@
 		CC63994D1E313FEC00DC56CD /* FoodPin.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CC63994B1E313FEC00DC56CD /* FoodPin.xcdatamodeld */; };
 		CC9580181DBF3FCE005BA651 /* RestaurantTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC9580171DBF3FCE005BA651 /* RestaurantTableViewCell.swift */; };
 		CC95801A1DBF4286005BA651 /* ReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC9580191DBF4286005BA651 /* ReviewViewController.swift */; };
+		CCA705471E329FB6006BF6CE /* WalkthroughContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCA705461E329FB6006BF6CE /* WalkthroughContentViewController.swift */; };
+		CCA705491E32A5C3006BF6CE /* WalkthroughPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCA705481E32A5C3006BF6CE /* WalkthroughPageViewController.swift */; };
 		CCAC3BD01DC072CF00B70586 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCAC3BCF1DC072CF00B70586 /* MapKit.framework */; };
 		CCAC3BD21DC07A4500B70586 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCAC3BD11DC07A4500B70586 /* MapViewController.swift */; };
 		CCC00D061DC2A4EA000489A9 /* AddRestaurantController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCC00D051DC2A4EA000489A9 /* AddRestaurantController.swift */; };
@@ -30,6 +32,8 @@
 		CC63994C1E313FEC00DC56CD /* FoodPin.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FoodPin.xcdatamodel; sourceTree = "<group>"; };
 		CC9580171DBF3FCE005BA651 /* RestaurantTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantTableViewCell.swift; sourceTree = "<group>"; };
 		CC9580191DBF4286005BA651 /* ReviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewViewController.swift; sourceTree = "<group>"; };
+		CCA705461E329FB6006BF6CE /* WalkthroughContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalkthroughContentViewController.swift; sourceTree = "<group>"; };
+		CCA705481E32A5C3006BF6CE /* WalkthroughPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalkthroughPageViewController.swift; sourceTree = "<group>"; };
 		CCAC3BCF1DC072CF00B70586 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		CCAC3BD11DC07A4500B70586 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		CCC00D051DC2A4EA000489A9 /* AddRestaurantController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddRestaurantController.swift; sourceTree = "<group>"; };
@@ -96,6 +100,8 @@
 				CCF8332F1DBBE988008B5558 /* LaunchScreen.storyboard */,
 				CCF833321DBBE988008B5558 /* Info.plist */,
 				CC63994B1E313FEC00DC56CD /* FoodPin.xcdatamodeld */,
+				CCA705461E329FB6006BF6CE /* WalkthroughContentViewController.swift */,
+				CCA705481E32A5C3006BF6CE /* WalkthroughPageViewController.swift */,
 			);
 			path = FoodPin;
 			sourceTree = "<group>";
@@ -183,6 +189,8 @@
 				CCF833391DBBEF6C008B5558 /* RestaurantTableViewController.swift in Sources */,
 				CC95801A1DBF4286005BA651 /* ReviewViewController.swift in Sources */,
 				CC1216591DBDBD13000E0AB9 /* DetailRestaurantTableViewCell.swift in Sources */,
+				CCA705471E329FB6006BF6CE /* WalkthroughContentViewController.swift in Sources */,
+				CCA705491E32A5C3006BF6CE /* WalkthroughPageViewController.swift in Sources */,
 				CC63994D1E313FEC00DC56CD /* FoodPin.xcdatamodeld in Sources */,
 				CC1216551DBD6763000E0AB9 /* RestaurantDetailViewController.swift in Sources */,
 				CC9580181DBF3FCE005BA651 /* RestaurantTableViewCell.swift in Sources */,

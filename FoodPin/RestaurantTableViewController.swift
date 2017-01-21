@@ -93,12 +93,28 @@ class RestaurantTableViewController: UITableViewController {
         }
     }
     
-    // The view wil appear
+    // The view will appear
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         // Hide the navigation bar when swiping on the table view
         navigationController?.hidesBarsOnSwipe = true
+    }
+    
+    // The view did appear
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        // Check if the walkthrough has been completed for the first time
+        let defaults = UserDefaults.standard
+        let isWalkthroughComplete = defaults.bool(forKey: "isWalkthroughComplete")
+        if isWalkthroughComplete {
+            return
+        }
+        
+        if let pageViewController = storyboard?.instantiateViewController(withIdentifier: "WalkthroughController") as? WalkthroughPageViewController {
+            present(pageViewController, animated: true, completion: nil)
+        }
     }
     
 
