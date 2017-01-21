@@ -52,20 +52,6 @@ class WalkthroughPageViewController: UIPageViewController, UIPageViewControllerD
         return viewControllerAt(index)
     }
     
-//// Default page Control
-//    // Return the total number of pages to be shown in the indicator
-//    func  presentationCount(for pageViewcontroller: UIPageViewController) -> Int {
-//        return pageHeadings.count
-//    }
-//    
-//    // Return the index of the selected item
-//    func presentationIndex(for pageViewController: UIPageViewController) -> Int {
-//        if let pageContentController = storyboard?.instantiateViewController(withIdentifier: "WalkthroughContentVC") as? WalkthroughContentViewController {
-//            return pageContentController.index
-//        }
-//        
-//        return 0
-//    }
     
     // MARK: - Helpers
     
@@ -100,16 +86,4 @@ class WalkthroughPageViewController: UIPageViewController, UIPageViewControllerD
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

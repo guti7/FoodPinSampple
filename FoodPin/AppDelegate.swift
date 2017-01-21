@@ -36,6 +36,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName: barFont]
         }
         
+        //// Custom tab bar appearance
+        // Allows to change the tint color of the tab bar item
+        UITabBar.appearance().tintColor = UIColor(red: 242/255, green: 116/255, blue: 119/255, alpha: 1.0)
+        UITabBar.appearance().selectionIndicatorImage = UIImage(named: "tabitem-selected")
+        // tint color of the tab bar background
+        //UITabBar.appearance().barTintColor = .black
+        // define a background image of the tab bar
+        //UITabBar.appearance().backgroundImage = UIImage(named: "tabbar-background")
+        
+        
+        
         return true
     }
 
